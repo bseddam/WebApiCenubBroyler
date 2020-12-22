@@ -5,9 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebApiProject.Controllers
+namespace WebApiCenubBroyler.Controllers
 {
-    public class UserController : ApiController
+    public class SlidesController : ApiController
     {
     }
 }
