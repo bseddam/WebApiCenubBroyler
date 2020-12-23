@@ -94,6 +94,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SlidesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DBControl\ConvertTypes.cs" />
     <Compile Include="DBControl\DBUsers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

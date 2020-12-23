@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WebApiCenubBroyler.DBControl;
 using WebApiCenubBroyler.Models;
@@ -15,16 +10,9 @@ namespace WebApiCenubBroyler.Controllers
 {
     public class UsersController : ApiController
     {
-        //private string[] shehirler = new string[] { "1a","2a","3a"};
-        //public string[] Get()
-        //{
-        //    return shehirler;
-        //}
-        //public string Get(int id)
-        //{
-        //    return shehirler[id];
-        //}
+        
         DBUsers dbusers = new DBUsers();
+        //select all
         public MobilResult Get()
         {
             MobilResult result = new MobilResult();
@@ -44,6 +32,7 @@ namespace WebApiCenubBroyler.Controllers
             }
             return result;
         }
+        //Select 1 row
         public MobilResult Get(int id)
         {
             MobilResult result = new MobilResult();
@@ -54,7 +43,7 @@ namespace WebApiCenubBroyler.Controllers
 
                 result.Data = userslist;
                 result.Result = true;
-                result.Message = "Succesfull get users";
+                result.Message = "Succesfull get user";
             }
             catch (Exception ex)
             {
@@ -64,7 +53,69 @@ namespace WebApiCenubBroyler.Controllers
             return result;
         }
 
+        //Insert
+        public MobilResult Post(Users user)
+        {
+            MobilResult result = new MobilResult();
+            result.Result = true;
 
+            try
+            {
+                Users us = dbusers.AddUser(user);
 
+                result.Data = us;
+                result.Result = true;
+                result.Message = "Succesfull inserted user";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Message = ex.Message;
+            }
+            return result;
+             
+        }
+        //Update
+        public MobilResult Put(int id, Users user)
+        {
+            MobilResult result = new MobilResult();
+            result.Result = true;
+
+            try
+            {
+                Users us = dbusers.UpdateUser(id,user);
+
+                result.Data = us;
+                result.Result = true;
+                result.Message = "Succesfull updated user";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+        //Delete
+        public MobilResult Delete(int id)
+        {
+            MobilResult result = new MobilResult();
+            result.Result = true;
+
+            try
+            {
+                List<Users> us = dbusers.DeleteUser(id);
+
+                result.Data = us;
+                result.Result = true;
+                result.Message = "Succesfull deleted user";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
     }
 }
