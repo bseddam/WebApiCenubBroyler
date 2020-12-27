@@ -46,7 +46,7 @@ namespace WebApiCenubBroyler.DBControl
 
                 return userlist;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 //LogInsert(Utils.Tables.v_Managers, Utils.LogType.select,
@@ -91,7 +91,7 @@ namespace WebApiCenubBroyler.DBControl
                 da.Dispose();
                 return user;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 //LogInsert(Utils.Tables.v_Managers, Utils.LogType.select,
@@ -132,7 +132,7 @@ namespace WebApiCenubBroyler.DBControl
                 return user;
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 //LogInsert(Utils.Tables.v_Managers, Utils.LogType.select,
                 //    String.Format("GetManagers()"), ex.Message, "", true);
@@ -151,11 +151,11 @@ namespace WebApiCenubBroyler.DBControl
             }
         }
 
-        public Users UpdateUser(int id, Users user)
+        public Users UpdateUser(Users user)
         {
 
             SqlCommand cmd = new SqlCommand(@"update Users set Name=@Name, Sname=@Sname, Phone=@Phone, 
-Email=@Email , Password=@Password , Gender=@Gender where UserID=" + id, SqlConn);
+Email=@Email , Password=@Password , Gender=@Gender where UserID=" + user.UserID, SqlConn);
 
             cmd.Parameters.AddWithValue("@Name", ConvertTypes.DbNullObj(user.Name));
             cmd.Parameters.AddWithValue("@Sname", ConvertTypes.DbNullObj(user.Sname));
@@ -172,7 +172,7 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + id, SqlConn)
                 return user;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //LogInsert(Utils.Tables.v_Managers, Utils.LogType.select,
                 //    String.Format("GetManagers()"), ex.Message, "", true);
@@ -194,9 +194,9 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + id, SqlConn)
         }
 
 
-        public List<Users> DeleteUser(int id)
+        public Users DeleteUser(Users user)
         {
-            SqlCommand cmd = new SqlCommand(@"Delete from Users where UserID=" + id, SqlConn);
+            SqlCommand cmd = new SqlCommand(@"Delete from Users where UserID=" + user.UserID, SqlConn);
             try
             {
 
@@ -204,10 +204,10 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + id, SqlConn)
                 cmd.ExecuteNonQuery();
 
                
-                return GetAllUsers();
+                return user;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //LogInsert(Utils.Tables.v_Managers, Utils.LogType.select,
                 //    String.Format("GetManagers()"), ex.Message, "", true);

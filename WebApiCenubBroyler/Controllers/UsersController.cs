@@ -14,7 +14,7 @@ namespace WebApiCenubBroyler.Controllers
         
         DBUsers dbusers = new DBUsers();
         //select all
-        [Route("getall")]
+        [Route("getallusers")]
         [HttpGet]
         public MobileResult AllUsers()
         {
@@ -37,6 +37,7 @@ namespace WebApiCenubBroyler.Controllers
         }
         //Select 1 row
         [HttpGet]
+        [Route("getuser/{id}")]
         public MobileResult Get(int id)
         {
             MobileResult result = new MobileResult();
@@ -56,7 +57,6 @@ namespace WebApiCenubBroyler.Controllers
             }
             return result;
         }
-
         //Insert
         [HttpPost]
         [Route("insert")]
@@ -82,16 +82,16 @@ namespace WebApiCenubBroyler.Controllers
              
         }
         //Update
-        [HttpPut]
+        [HttpPost]
         [Route("update")]
-        public MobileResult Put(int id, Users user)
+        public MobileResult Put(Users user)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
 
             try
             {
-                Users us = dbusers.UpdateUser(id,user);
+                Users us = dbusers.UpdateUser(user);
 
                 result.Data = us;
                 result.Result = true;
@@ -105,16 +105,16 @@ namespace WebApiCenubBroyler.Controllers
             return result;
         }
         //Delete
-        [HttpDelete]
+        [HttpPost]
         [Route("delete")]
-        public MobileResult Delete(int id)
+        public MobileResult Delete(Users user)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
 
             try
             {
-                List<Users> us = dbusers.DeleteUser(id);
+                Users us = dbusers.DeleteUser(user);
 
                 result.Data = us;
                 result.Result = true;
@@ -127,5 +127,10 @@ namespace WebApiCenubBroyler.Controllers
             }
             return result;
         }
+
+
+
+
+
     }
 }
