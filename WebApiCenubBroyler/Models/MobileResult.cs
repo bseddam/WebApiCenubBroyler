@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApiCenubBroyler.Models
 {
-    public class MobilResult
+    public class MobileResult
     {
         public bool Result { get; set; }
         public object Data { get; set; }

@@ -8,14 +8,17 @@ using WebApiCenubBroyler.Models;
 
 namespace WebApiCenubBroyler.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         
         DBUsers dbusers = new DBUsers();
         //select all
-        public MobilResult Get()
+        [Route("getall")]
+        [HttpGet]
+        public MobileResult AllUsers()
         {
-            MobilResult result = new MobilResult();
+            MobileResult result = new MobileResult();
             result.Result = true;
             try
             {
@@ -33,9 +36,10 @@ namespace WebApiCenubBroyler.Controllers
             return result;
         }
         //Select 1 row
-        public MobilResult Get(int id)
+        [HttpGet]
+        public MobileResult Get(int id)
         {
-            MobilResult result = new MobilResult();
+            MobileResult result = new MobileResult();
             result.Result = true;
             try
             {
@@ -54,9 +58,11 @@ namespace WebApiCenubBroyler.Controllers
         }
 
         //Insert
-        public MobilResult Post(Users user)
+        [HttpPost]
+        [Route("insert")]
+        public MobileResult Post(Users user)
         {
-            MobilResult result = new MobilResult();
+            MobileResult result = new MobileResult();
             result.Result = true;
 
             try
@@ -76,9 +82,11 @@ namespace WebApiCenubBroyler.Controllers
              
         }
         //Update
-        public MobilResult Put(int id, Users user)
+        [HttpPut]
+        [Route("update")]
+        public MobileResult Put(int id, Users user)
         {
-            MobilResult result = new MobilResult();
+            MobileResult result = new MobileResult();
             result.Result = true;
 
             try
@@ -97,9 +105,11 @@ namespace WebApiCenubBroyler.Controllers
             return result;
         }
         //Delete
-        public MobilResult Delete(int id)
+        [HttpDelete]
+        [Route("delete")]
+        public MobileResult Delete(int id)
         {
-            MobilResult result = new MobilResult();
+            MobileResult result = new MobileResult();
             result.Result = true;
 
             try
