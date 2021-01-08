@@ -67,9 +67,7 @@ namespace WebApiCenubBroyler.Controllers
 
             try
             {
-                Users us = dbusers.AddUser(user);
-
-                result.Data = us;
+                dbusers.AddUser(user);
                 result.Result = true;
                 result.Message = "Succesfull inserted user";
             }
@@ -82,7 +80,7 @@ namespace WebApiCenubBroyler.Controllers
              
         }
         //Update
-        [HttpPost]
+        [HttpPut]
         [Route("update")]
         public MobileResult Put(Users user)
         {
@@ -91,9 +89,7 @@ namespace WebApiCenubBroyler.Controllers
 
             try
             {
-                Users us = dbusers.UpdateUser(user);
-
-                result.Data = us;
+                dbusers.UpdateUser(user);
                 result.Result = true;
                 result.Message = "Succesfull updated user";
             }
@@ -105,18 +101,16 @@ namespace WebApiCenubBroyler.Controllers
             return result;
         }
         //Delete
-        [HttpPost]
-        [Route("delete")]
-        public MobileResult Delete(Users user)
+        [HttpDelete]
+        [Route("delete/{userid}")]
+        public MobileResult Delete(string userid)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
 
             try
             {
-                Users us = dbusers.DeleteUser(user);
-
-                result.Data = us;
+                dbusers.DeleteUser(ConvertTypes.ToParseStr(userid));
                 result.Result = true;
                 result.Message = "Succesfull deleted user";
             }

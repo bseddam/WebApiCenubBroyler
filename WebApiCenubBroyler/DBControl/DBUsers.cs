@@ -109,7 +109,7 @@ namespace WebApiCenubBroyler.DBControl
             }
         }
        
-        public Users AddUser(Users user)
+        public void AddUser(Users user)
         {
         
         SqlCommand cmd = new SqlCommand(@"insert into  Users  
@@ -129,7 +129,7 @@ namespace WebApiCenubBroyler.DBControl
 
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
-                return user;
+                //return user;
 
             }
             catch (Exception )
@@ -140,7 +140,7 @@ namespace WebApiCenubBroyler.DBControl
                 //Users u = new Users();
                 //u.Name = ex.Message;
                 //userlist.Add(u);
-                return null;
+                //return null;
             }
             finally
             {
@@ -151,7 +151,7 @@ namespace WebApiCenubBroyler.DBControl
             }
         }
 
-        public Users UpdateUser(Users user)
+        public void UpdateUser(Users user)
         {
 
             SqlCommand cmd = new SqlCommand(@"update Users set Name=@Name, Sname=@Sname, Phone=@Phone, 
@@ -169,7 +169,7 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + user.UserID,
 
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
-                return user;
+                //return user;
 
             }
             catch (Exception)
@@ -180,7 +180,7 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + user.UserID,
                 //Users u = new Users();
                 //u.Name = ex.Message;
                 //userlist.Add(u);
-                return null;
+                //return null;
             }
             finally
             {
@@ -194,17 +194,15 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + user.UserID,
         }
 
 
-        public Users DeleteUser(Users user)
+        public void DeleteUser(string userid)
         {
-            SqlCommand cmd = new SqlCommand(@"Delete from Users where UserID=" + user.UserID, SqlConn);
+            SqlCommand cmd = new SqlCommand(@"Delete from Users where UserID="+ userid, SqlConn);
             try
             {
 
                 cmd.Connection.Open();
                 cmd.ExecuteNonQuery();
 
-               
-                return user;
 
             }
             catch (Exception)
@@ -215,7 +213,7 @@ Email=@Email , Password=@Password , Gender=@Gender where UserID=" + user.UserID,
                 //Users u = new Users();
                 //u.Name = ex.Message;
                 //userlist.Add(u);
-                return null;
+                //return null;
             }
             finally
             {
